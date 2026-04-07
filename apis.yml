@@ -1,7 +1,12 @@
 aid: staples
-url: https://raw.githubusercontent.com/api-evangelist/staples/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/staples/refs/heads/main/apis.yml
 modified: '2026-03-24'
 apis: []
 common:
   - type: Website
     url: https://www.staples.com
+description: >-
+  Staples is an American multinational office supply retail company that sells office
+  supplies, electronics, furniture, and business services to consumers and businesses
+  through stores, websites, and direct sales.
