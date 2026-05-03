@@ -1,0 +1,329 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Staples Enterprise Procurement"
+  description: >-
+    Unified capability for enterprise office supply procurement workflows using Staples Advantage. Enables procurement managers, finance teams, and operations staff to search the product catalog, manage orders with cost center allocation, track deliveries, and handle invoicing through a single integrated API.
+  tags:
+    - Staples
+    - Enterprise Procurement
+    - Office Supplies
+    - B2B
+    - eProcurement
+    - Order Management
+    - Invoicing
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      STAPLES_API_TOKEN: STAPLES_API_TOKEN
+
+capability:
+  consumes:
+    - import: staples
+      location: ./shared/staples-advantage-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: enterprise-procurement-api
+      description: "Unified REST API for Staples Advantage enterprise procurement workflows."
+      resources:
+        - path: /v1/catalog/search
+          name: catalog-search
+          description: Search the Staples product catalog
+          operations:
+            - method: GET
+              name: search-products
+              description: Search office supplies by keyword, category, or brand
+              call: "staples.search-products"
+              with:
+                q: "rest.q"
+                category: "rest.category"
+                brand: "rest.brand"
+                inStock: "rest.inStock"
+                limit: "rest.limit"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/catalog/categories
+          name: catalog-categories
+          description: Browse product category hierarchy
+          operations:
+            - method: GET
+              name: list-categories
+              description: List all product categories and subcategories
+              call: "staples.list-categories"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/catalog/products/{sku}
+          name: catalog-product
+          description: Get product details
+          operations:
+            - method: GET
+              name: get-product
+              description: Get full product specs, pricing, and availability by SKU
+              call: "staples.get-product"
+              with:
+                sku: "rest.sku"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/orders
+          name: orders
+          description: Purchase order management
+          operations:
+            - method: GET
+              name: list-orders
+              description: View order history with status and cost center filtering
+              call: "staples.list-orders"
+              with:
+                status: "rest.status"
+                startDate: "rest.startDate"
+                endDate: "rest.endDate"
+                costCenter: "rest.costCenter"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-order
+              description: Place a purchase order with delivery address and cost center allocation
+              call: "staples.create-order"
+              with:
+                items: "rest.items"
+                deliveryAddress: "rest.deliveryAddress"
+                purchaseOrderNumber: "rest.purchaseOrderNumber"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/orders/{orderId}
+          name: order
+          description: Order status and details
+          operations:
+            - method: GET
+              name: get-order
+              description: Get order details, line items, and tracking numbers
+              call: "staples.get-order"
+              with:
+                orderId: "rest.orderId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/account
+          name: account
+          description: Account and contract information
+          operations:
+            - method: GET
+              name: get-account
+              description: Get contract terms, credit limits, and account details
+              call: "staples.get-account"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/account/cost-centers
+          name: cost-centers
+          description: Cost center budget management
+          operations:
+            - method: GET
+              name: list-cost-centers
+              description: List cost centers with budget and spending data
+              call: "staples.list-cost-centers"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/delivery/tracking/{trackingNumber}
+          name: delivery-tracking
+          description: Shipment delivery tracking
+          operations:
+            - method: GET
+              name: track-delivery
+              description: Track shipment status and delivery events
+              call: "staples.track-delivery"
+              with:
+                trackingNumber: "rest.trackingNumber"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/invoices
+          name: invoices
+          description: Invoice and billing management
+          operations:
+            - method: GET
+              name: list-invoices
+              description: View invoice history with payment status filtering
+              call: "staples.list-invoices"
+              with:
+                status: "rest.status"
+                startDate: "rest.startDate"
+                endDate: "rest.endDate"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/invoices/{invoiceId}
+          name: invoice
+          description: Invoice details
+          operations:
+            - method: GET
+              name: get-invoice
+              description: Get invoice line items and payment details
+              call: "staples.get-invoice"
+              with:
+                invoiceId: "rest.invoiceId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9080
+      namespace: enterprise-procurement-mcp
+      transport: http
+      description: "MCP server for AI-assisted Staples enterprise procurement workflows."
+      tools:
+        - name: search-products
+          description: Search Staples Advantage product catalog by keyword, category, or brand with in-stock filtering
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "staples.search-products"
+          with:
+            q: "tools.q"
+            category: "tools.category"
+            brand: "tools.brand"
+            inStock: "tools.inStock"
+            limit: "tools.limit"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-categories
+          description: Browse Staples product category hierarchy including office supplies, technology, furniture, and cleaning
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "staples.list-categories"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-product-details
+          description: Get full Staples product specifications, contract pricing, availability, and related SKUs
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "staples.get-product"
+          with:
+            sku: "tools.sku"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-orders
+          description: View Staples Advantage order history filterable by status, date range, and cost center
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "staples.list-orders"
+          with:
+            status: "tools.status"
+            startDate: "tools.startDate"
+            endDate: "tools.endDate"
+            costCenter: "tools.costCenter"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: place-order
+          description: Submit a Staples Advantage purchase order with product SKUs, quantities, delivery address, and cost center allocation
+          hints:
+            readOnly: false
+            destructive: false
+          call: "staples.create-order"
+          with:
+            items: "tools.items"
+            deliveryAddress: "tools.deliveryAddress"
+            purchaseOrderNumber: "tools.purchaseOrderNumber"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-order-status
+          description: Check Staples Advantage order status, line items, and carrier tracking numbers
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "staples.get-order"
+          with:
+            orderId: "tools.orderId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-account-details
+          description: Get Staples Advantage account information including contract number, credit limit, and payment terms
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "staples.get-account"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-cost-centers
+          description: View all configured cost centers with budget allocations and current spending
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "staples.list-cost-centers"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: track-delivery
+          description: Track the delivery status and shipment events for a Staples order by tracking number
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "staples.track-delivery"
+          with:
+            trackingNumber: "tools.trackingNumber"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-invoices
+          description: View Staples Advantage invoice history with filtering by payment status and date range
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "staples.list-invoices"
+          with:
+            status: "tools.status"
+            startDate: "tools.startDate"
+            endDate: "tools.endDate"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-invoice-details
+          description: Get Staples invoice line items, amounts, and payment status for reconciliation
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "staples.get-invoice"
+          with:
+            invoiceId: "tools.invoiceId"
+          outputParameters:
+            - type: object
+              mapping: "$."

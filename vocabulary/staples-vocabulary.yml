@@ -1,0 +1,110 @@
+name: Staples Vocabulary
+description: >-
+  Domain vocabulary for Staples Advantage B2B procurement platform concepts including eProcurement, PunchOut catalogs, cost centers, and enterprise ordering workflows.
+created: '2026-05-02'
+modified: '2026-05-02'
+terms:
+  - term: Staples Business Advantage
+    definition: >-
+      Staples' dedicated B2B division offering enterprise procurement solutions with contract pricing, cost center management, eProcurement integration, and account management for business customers.
+    tags:
+      - B2B
+      - Procurement
+
+  - term: eProcurement
+    definition: >-
+      Electronic procurement systems that automate the purchase order process between business buyers and suppliers. Staples Advantage integrates with over 170 eProcurement platforms including Ariba and Coupa.
+    tags:
+      - Procurement
+      - Integration
+
+  - term: PunchOut
+    definition: >-
+      A B2B e-commerce integration standard (cXML or OCI) that allows employees to access a supplier's catalog from within their company's procurement system and return selected items as a purchase order.
+    tags:
+      - PunchOut
+      - Integration
+
+  - term: cXML
+    definition: >-
+      Commerce Extensible Markup Language — an XML-based data format standard for exchanging purchase orders, catalogs, and other procurement documents between buyer and supplier systems. Used by Staples Advantage PunchOut.
+    tags:
+      - Standard
+      - Protocol
+
+  - term: SKU
+    definition: >-
+      Stock Keeping Unit — a unique alphanumeric identifier assigned to each Staples product for inventory tracking, catalog lookup, and ordering.
+    tags:
+      - Catalog
+      - Identifier
+
+  - term: Cost Center
+    definition: >-
+      An accounting code within an enterprise organization used to allocate procurement spending to specific departments, projects, or budget lines. Staples Advantage supports multi-cost-center order allocation.
+    tags:
+      - Finance
+      - Accounting
+
+  - term: Contract Pricing
+    definition: >-
+      Negotiated pricing rates agreed between Staples Business Advantage and an enterprise customer. Contract prices are typically lower than list prices and are applied automatically when ordering with an eligible account.
+    tags:
+      - Pricing
+      - Contract
+
+  - term: Purchase Order
+    definition: >-
+      A formal commercial document issued by a buyer to Staples authorizing the purchase of specific products at agreed prices. Referenced by a purchase order number (PO number) for accounting and tracking.
+    tags:
+      - Orders
+      - Finance
+
+  - term: Unit of Measure
+    definition: >-
+      The standardized unit in which a Staples product is sold. Common values: EA (each), BX (box), RM (ream), PK (pack), CS (case), CT (carton).
+    tags:
+      - Catalog
+      - Measurement
+
+  - term: Approved Product List
+    definition: >-
+      A customer-specific list of Staples products pre-approved for purchase under an enterprise contract, restricting ordering to authorized items to enforce procurement policy.
+    tags:
+      - Catalog
+      - Compliance
+
+  - term: Ariba
+    definition: >-
+      SAP Ariba is an enterprise procurement platform. Staples Business Advantage is recognized as a top supplier on the Ariba network with full PunchOut and EDI integration support.
+    tags:
+      - Integration
+      - Platform
+
+  - term: Coupa
+    definition: >-
+      A leading business spend management platform. Staples Business Advantage supports Coupa integration for PunchOut catalog access and purchase order automation.
+    tags:
+      - Integration
+      - Platform
+
+  - term: Net Terms
+    definition: >-
+      The payment terms for a Staples Advantage account defining when payment is due after invoice receipt (e.g., Net 30 = payment due within 30 days of invoice date).
+    tags:
+      - Finance
+      - Payment
+
+  - term: Fulfillment
+    definition: >-
+      The process of picking, packing, and shipping ordered products from a Staples distribution center to the delivery address. Most orders fulfill within 1-2 business days.
+    tags:
+      - Orders
+      - Delivery
+
+  - term: EDI
+    definition: >-
+      Electronic Data Interchange — a standardized electronic format for exchanging business documents such as purchase orders (850), invoices (810), and advance ship notices (856) between Staples and enterprise buyers.
+    tags:
+      - Integration
+      - Standard

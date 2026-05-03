@@ -1,0 +1,21 @@
+{
+  "name": "Product",
+  "description": "Staples Advantage catalog product with pricing and availability",
+  "fields": [
+    {"name": "sku", "type": "string", "required": true, "description": "Product SKU identifier"},
+    {"name": "name", "type": "string", "required": true, "description": "Product display name"},
+    {"name": "brand", "type": "string", "required": false, "description": "Manufacturer brand"},
+    {"name": "category", "type": "string", "required": false, "description": "Product category path"},
+    {"name": "description", "type": "string", "required": false, "description": "Product description"},
+    {"name": "price", "type": "number", "required": false, "description": "Standard list price USD"},
+    {"name": "contractPrice", "type": "number", "required": false, "description": "Account contract price USD"},
+    {"name": "inStock", "type": "boolean", "required": false, "description": "In-stock availability"},
+    {"name": "imageUrl", "type": "string", "required": false, "description": "Product image URL"},
+    {"name": "specifications", "type": "object", "required": false, "description": "Technical specifications"},
+    {"name": "unitOfMeasure", "type": "string", "required": false, "description": "Order unit (EA, BX, CS)"},
+    {"name": "packSize", "type": "string", "required": false, "description": "Pack size description"},
+    {"name": "weight", "type": "number", "required": false, "description": "Weight in pounds"},
+    {"name": "dimensions", "type": "string", "required": false, "description": "Physical dimensions"},
+    {"name": "relatedSkus", "type": "array", "required": false, "description": "Related product SKUs"}
+  ]
+}

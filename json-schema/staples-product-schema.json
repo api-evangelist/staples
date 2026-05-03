@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12",
+  "$id": "https://api.staplesadvantage.com/schemas/product",
+  "title": "Staples Product",
+  "description": "A Staples Advantage product catalog item with SKU, pricing, availability, and contract-specific pricing.",
+  "type": "object",
+  "required": ["sku", "name"],
+  "properties": {
+    "sku": {
+      "type": "string",
+      "description": "Staples product SKU identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Product display name"
+    },
+    "brand": {
+      "type": "string",
+      "description": "Manufacturer or brand name"
+    },
+    "category": {
+      "type": "string",
+      "description": "Product category path"
+    },
+    "description": {
+      "type": "string",
+      "description": "Full product description"
+    },
+    "price": {
+      "type": "number",
+      "format": "float",
+      "minimum": 0,
+      "description": "Standard list price in USD"
+    },
+    "contractPrice": {
+      "type": "number",
+      "format": "float",
+      "minimum": 0,
+      "description": "Account contract price if applicable (may be lower than list price)"
+    },
+    "inStock": {
+      "type": "boolean",
+      "description": "Whether the item is currently in stock"
+    },
+    "imageUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to product image"
+    },
+    "specifications": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Product technical specifications as key-value pairs"
+    },
+    "unitOfMeasure": {
+      "type": "string",
+      "description": "Unit of measure for ordering (e.g., EA, BX, CS)"
+    },
+    "packSize": {
+      "type": "string",
+      "description": "Pack size description (e.g., 500/ream, 12/box)"
+    },
+    "weight": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Product weight in pounds"
+    },
+    "dimensions": {
+      "type": "string",
+      "description": "Product dimensions (L x W x H)"
+    },
+    "relatedSkus": {
+      "type": "array",
+      "description": "SKUs of related or substitute products",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "examples": [
+    {
+      "sku": "SPL-10501413",
+      "name": "HP 8.5 x 11 Copy Paper, 20 lb, 92 Bright, 500 Sheets/Ream",
+      "brand": "HP",
+      "category": "Office Supplies/Paper/Copy Paper",
+      "price": 12.99,
+      "contractPrice": 9.99,
+      "inStock": true,
+      "unitOfMeasure": "RM",
+      "packSize": "500/ream",
+      "weight": 5.0
+    }
+  ]
+}

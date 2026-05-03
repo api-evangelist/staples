@@ -1,0 +1,52 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.staplesadvantage.com/v1/orders",
+    "headers": {
+      "Authorization": "Bearer {token}",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "body": {
+      "purchaseOrderNumber": "PO-2026-05-0042",
+      "items": [
+        {
+          "sku": "SPL-10501413",
+          "quantity": 10,
+          "costCenter": "CC-MKTG-001"
+        },
+        {
+          "sku": "SPL-40187632",
+          "quantity": 4,
+          "costCenter": "CC-MKTG-001"
+        }
+      ],
+      "deliveryAddress": {
+        "name": "Marketing Team",
+        "street": "100 Main Street",
+        "city": "Boston",
+        "state": "MA",
+        "postalCode": "02101",
+        "country": "US",
+        "phone": "6175551234"
+      },
+      "deliveryInstructions": "Leave at reception, 2nd floor"
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "id": "ord_20260502_0042",
+      "status": "confirmed",
+      "purchaseOrderNumber": "PO-2026-05-0042",
+      "itemCount": 2,
+      "subtotal": 135.86,
+      "total": 148.23,
+      "orderedAt": "2026-05-02T10:00:00Z",
+      "estimatedDelivery": "2026-05-04"
+    }
+  }
+}

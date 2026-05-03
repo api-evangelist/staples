@@ -1,0 +1,56 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.staplesadvantage.com/v1/catalog/search?q=copy+paper&inStock=true&limit=3",
+    "headers": {
+      "Authorization": "Bearer {token}",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "total": 47,
+      "limit": 3,
+      "offset": 0,
+      "products": [
+        {
+          "sku": "SPL-10501413",
+          "name": "HP 8.5 x 11 Copy Paper, 20 lb, 92 Bright, 500 Sheets/Ream",
+          "brand": "HP",
+          "category": "Office Supplies/Paper/Copy Paper",
+          "price": 12.99,
+          "contractPrice": 9.99,
+          "inStock": true,
+          "unitOfMeasure": "RM",
+          "packSize": "500/ream"
+        },
+        {
+          "sku": "SPL-20148693",
+          "name": "Staples Multiuse Copy Paper, 8.5 x 11, 500 Sheets/Ream, 5 Reams/Carton",
+          "brand": "Staples",
+          "category": "Office Supplies/Paper/Copy Paper",
+          "price": 54.99,
+          "contractPrice": 41.99,
+          "inStock": true,
+          "unitOfMeasure": "CT",
+          "packSize": "5 reams/carton"
+        },
+        {
+          "sku": "SPL-30289471",
+          "name": "Hammermill Premium Copy Paper, 8.5 x 11, 24 lb, 500 Sheets/Ream",
+          "brand": "Hammermill",
+          "category": "Office Supplies/Paper/Copy Paper",
+          "price": 15.49,
+          "contractPrice": 12.75,
+          "inStock": true,
+          "unitOfMeasure": "RM",
+          "packSize": "500/ream"
+        }
+      ]
+    }
+  }
+}
