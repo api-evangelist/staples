@@ -4,89 +4,33 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Staples
 providerId: staples
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Office Supplies
-  - Retail
   - Procurement
-  - B2B
   - eProcurement
+  - B2B
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Staples API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: Staples Advantage eProcurement integrations are B2B partner-only. Rate limits, throttling response codes, and retry semantics are defined in the partner integration agreement and are not published on a public developer-docs page.
+sources:
+  - https://www.staplesadvantage.com/learn/eprocurement-integrations
+notes: B2B / enterprise contract only. No public rate-limit documentation. Effective limits are set in the integration agreement and enforced at the Staples eProcurement gateway.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Staples Advantage eProcurement API
-      - Staples Product Catalog API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Staples Advantage eProcurement API
-      - Staples Product Catalog API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Staples Advantage eProcurement API
-      - Staples Product Catalog API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Staples Advantage eProcurement API
-      - Staples Product Catalog API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Staples Advantage eProcurement API
-      - Staples Product Catalog API
+  - name: Partner Contract Limit
+    scope: partner-account
+    metric: varies
+    limit: per integration agreement; not publicly documented
+    notes: Throughput, burst, and concurrency caps are defined per partner; consult the Staples Sales Engineer onboarding the integration for the binding numbers.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
-maintainers: []
+  - name: PunchOut Session Semantics
+    description: cXML / OCI PunchOut traffic is session-based - the punch-out request opens a session, the cart is returned via PunchOutOrderMessage, and the bulk of throughput is request-pair, not high-RPS REST. Rate-limit posture differs from REST order-management traffic.
+  - name: EDI Batch Cadence
+    description: EDI flows are batched (typically 850/855/856/810 documents) and not subject to second-level rate limits in the same way as REST APIs. Cadence is agreed during onboarding.
+  - name: Backoff
+    description: Generic exponential backoff with jitter is recommended absent vendor-published Retry-After semantics; consult partner documentation for the exact response contract.
+maintainers:
+  - name: Staples Business Advantage
+    url: https://www.staplesadvantage.com/
