@@ -1,0 +1,136 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Staples Advantage eProcurement API — Invoices
+  description: 'Staples Advantage eProcurement API — Invoices. 2 operations. Lead operation: List Invoices. Self-contained
+    Naftiko capability covering one Staples business surface.'
+  tags:
+  - Staples
+  - Invoices
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    STAPLES_API_KEY: STAPLES_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: advantage-eprocurement-invoices
+    baseUri: https://api.staplesadvantage.com
+    description: Staples Advantage eProcurement API — Invoices business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-invoices
+      path: /v1/invoices
+      operations:
+      - name: listinvoices
+        method: GET
+        description: List Invoices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter by payment status
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+    - name: v1-invoices-invoiceId
+      path: /v1/invoices/{invoiceId}
+      operations:
+      - name: getinvoice
+        method: GET
+        description: Get Invoice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: invoiceId
+          in: path
+          type: string
+          description: The unique identifier of the invoice
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.STAPLES_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: advantage-eprocurement-invoices-rest
+    port: 8080
+    description: REST adapter for Staples Advantage eProcurement API — Invoices. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/invoices
+      name: v1-invoices
+      description: REST surface for v1-invoices.
+      operations:
+      - method: GET
+        name: listinvoices
+        description: List Invoices
+        call: advantage-eprocurement-invoices.listinvoices
+        with:
+          status: rest.status
+          startDate: rest.startDate
+          endDate: rest.endDate
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/invoices/{invoiceid}
+      name: v1-invoices-invoiceid
+      description: REST surface for v1-invoices-invoiceId.
+      operations:
+      - method: GET
+        name: getinvoice
+        description: Get Invoice
+        call: advantage-eprocurement-invoices.getinvoice
+        with:
+          invoiceId: rest.invoiceId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: advantage-eprocurement-invoices-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Staples Advantage eProcurement API — Invoices. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-invoices
+      description: List Invoices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: advantage-eprocurement-invoices.listinvoices
+      with:
+        status: tools.status
+        startDate: tools.startDate
+        endDate: tools.endDate
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-invoice
+      description: Get Invoice
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: advantage-eprocurement-invoices.getinvoice
+      with:
+        invoiceId: tools.invoiceId
+      outputParameters:
+      - type: object
+        mapping: $.
