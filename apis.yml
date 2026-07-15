@@ -54,6 +54,8 @@ apis:
       The Staples Product Catalog API provides programmatic access to Staples' office supply catalog including product
       search, pricing, availability, and category browsing for integration with procurement and ordering systems.
 common:
+  - type: AgenticAccess
+    url: agentic-access/staples-agentic-access.yml
   - type: DomainSecurity
     url: security/staples-domain-security.yml
   - type: Authentication
