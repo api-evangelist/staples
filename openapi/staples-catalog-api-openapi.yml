@@ -1,0 +1,211 @@
+openapi: 3.1.0
+info:
+  title: Staples Advantage eProcurement Account Catalog API
+  description: The Staples Advantage eProcurement API enables enterprise procurement integration for business customers. Partners can search the Staples product catalog, manage orders, track deliveries, and access account information. Supports integration with over 170 eProcurement platforms including Ariba, Coupa, Jaggaer, and Oracle for streamlined office supply procurement.
+  version: '1.0'
+  contact:
+    name: Staples Business Advantage Support
+    url: https://www.staplesadvantage.com/
+  termsOfService: https://www.staples.com/sbd/cre/marketing/terms-and-conditions/
+servers:
+- url: https://api.staplesadvantage.com
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Catalog
+  description: Product catalog search and browse operations
+paths:
+  /v1/catalog/search:
+    get:
+      operationId: searchProducts
+      summary: Search Products
+      description: Search the Staples Advantage product catalog by keyword, category, or SKU. Returns matching products with pricing, availability, and contract-specific pricing where applicable.
+      tags:
+      - Catalog
+      parameters:
+      - name: q
+        in: query
+        required: true
+        description: Search query string
+        schema:
+          type: string
+      - name: category
+        in: query
+        required: false
+        description: Filter by product category
+        schema:
+          type: string
+      - name: brand
+        in: query
+        required: false
+        description: Filter by brand name
+        schema:
+          type: string
+      - name: inStock
+        in: query
+        required: false
+        description: Filter to in-stock items only
+        schema:
+          type: boolean
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 20
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+                  total:
+                    type: integer
+                  limit:
+                    type: integer
+                  offset:
+                    type: integer
+        '401':
+          description: Unauthorized
+        '429':
+          description: Too Many Requests
+  /v1/catalog/categories:
+    get:
+      operationId: listCategories
+      summary: List Categories
+      description: Returns the full Staples Advantage product category hierarchy including office supplies, technology, furniture, cleaning, and breakroom categories.
+      tags:
+      - Catalog
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  categories:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Category'
+        '401':
+          description: Unauthorized
+        '429':
+          description: Too Many Requests
+  /v1/catalog/products/{sku}:
+    get:
+      operationId: getProduct
+      summary: Get Product
+      description: Returns detailed information for a specific product by SKU, including full description, specifications, pricing, availability, and related products.
+      tags:
+      - Catalog
+      parameters:
+      - name: sku
+        in: path
+        required: true
+        description: The product SKU identifier
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Product Not Found
+        '429':
+          description: Too Many Requests
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        sku:
+          type: string
+        name:
+          type: string
+        brand:
+          type: string
+        category:
+          type: string
+        price:
+          type: number
+          format: float
+        contractPrice:
+          type: number
+          format: float
+          description: Contract-specific price if applicable
+        inStock:
+          type: boolean
+        imageUrl:
+          type: string
+    Category:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        parentId:
+          type: string
+        level:
+          type: integer
+        productCount:
+          type: integer
+        subcategories:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+    ProductDetail:
+      allOf:
+      - $ref: '#/components/schemas/Product'
+      - type: object
+        properties:
+          description:
+            type: string
+          specifications:
+            type: object
+            additionalProperties:
+              type: string
+          unitOfMeasure:
+            type: string
+          packSize:
+            type: string
+          weight:
+            type: number
+          dimensions:
+            type: string
+          relatedSkus:
+            type: array
+            items:
+              type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: Staples Advantage eProcurement Integrations
+  url: https://www.staplesadvantage.com/learn/eprocurement-integrations

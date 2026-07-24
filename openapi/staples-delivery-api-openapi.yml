@@ -1,0 +1,86 @@
+openapi: 3.1.0
+info:
+  title: Staples Advantage eProcurement Account Delivery API
+  description: The Staples Advantage eProcurement API enables enterprise procurement integration for business customers. Partners can search the Staples product catalog, manage orders, track deliveries, and access account information. Supports integration with over 170 eProcurement platforms including Ariba, Coupa, Jaggaer, and Oracle for streamlined office supply procurement.
+  version: '1.0'
+  contact:
+    name: Staples Business Advantage Support
+    url: https://www.staplesadvantage.com/
+  termsOfService: https://www.staples.com/sbd/cre/marketing/terms-and-conditions/
+servers:
+- url: https://api.staplesadvantage.com
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Delivery
+  description: Delivery tracking and scheduling operations
+paths:
+  /v1/delivery/tracking/{trackingNumber}:
+    get:
+      operationId: trackDelivery
+      summary: Track Delivery
+      description: Returns the current delivery status and tracking history for a specific shipment by tracking number.
+      tags:
+      - Delivery
+      parameters:
+      - name: trackingNumber
+        in: path
+        required: true
+        description: The carrier tracking number
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveryTracking'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Tracking Number Not Found
+        '429':
+          description: Too Many Requests
+components:
+  schemas:
+    DeliveryTracking:
+      type: object
+      properties:
+        trackingNumber:
+          type: string
+        carrier:
+          type: string
+        status:
+          type: string
+          enum:
+          - label_created
+          - picked_up
+          - in_transit
+          - out_for_delivery
+          - delivered
+          - exception
+        estimatedDelivery:
+          type: string
+          format: date
+        events:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                format: date-time
+              location:
+                type: string
+              description:
+                type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: Staples Advantage eProcurement Integrations
+  url: https://www.staplesadvantage.com/learn/eprocurement-integrations

@@ -1,0 +1,116 @@
+openapi: 3.1.0
+info:
+  title: Staples Advantage eProcurement Account API
+  description: The Staples Advantage eProcurement API enables enterprise procurement integration for business customers. Partners can search the Staples product catalog, manage orders, track deliveries, and access account information. Supports integration with over 170 eProcurement platforms including Ariba, Coupa, Jaggaer, and Oracle for streamlined office supply procurement.
+  version: '1.0'
+  contact:
+    name: Staples Business Advantage Support
+    url: https://www.staplesadvantage.com/
+  termsOfService: https://www.staples.com/sbd/cre/marketing/terms-and-conditions/
+servers:
+- url: https://api.staplesadvantage.com
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Account
+  description: Account and contract management operations
+paths:
+  /v1/account:
+    get:
+      operationId: getAccount
+      summary: Get Account
+      description: Returns the Staples Advantage account details including contract information, approved product lists, and spending limits.
+      tags:
+      - Account
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '401':
+          description: Unauthorized
+        '429':
+          description: Too Many Requests
+  /v1/account/cost-centers:
+    get:
+      operationId: listCostCenters
+      summary: List Cost Centers
+      description: Returns all cost center codes configured for the authenticated account for order allocation and expense tracking.
+      tags:
+      - Account
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  costCenters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CostCenter'
+        '401':
+          description: Unauthorized
+        '429':
+          description: Too Many Requests
+components:
+  schemas:
+    CostCenter:
+      type: object
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+        budget:
+          type: number
+          format: float
+        spent:
+          type: number
+          format: float
+        available:
+          type: number
+          format: float
+        active:
+          type: boolean
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        contractNumber:
+          type: string
+        contractExpiry:
+          type: string
+          format: date
+        creditLimit:
+          type: number
+          format: float
+        availableCredit:
+          type: number
+          format: float
+        paymentTerms:
+          type: string
+        primaryContact:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+            phone:
+              type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: Staples Advantage eProcurement Integrations
+  url: https://www.staplesadvantage.com/learn/eprocurement-integrations
