@@ -9,7 +9,20 @@ tags:
   - eProcurement
   - Fortune 500
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/staples.png
 created: '2024-01-01'
 modified: '2026-05-19'
 description: >-
@@ -17,42 +30,96 @@ description: >-
   Staples Business Advantage. The platform supports over 170 eProcurement system integrations including PunchOut
   catalogs, EDI, and REST-based procurement APIs for enterprise customers.
 apis:
-  - aid: staples:staples-advantage-eprocurement-api
-    name: Staples Advantage eProcurement API
-    tags:
-      - eProcurement
-      - PunchOut
-      - B2B
-      - Office Supplies
-      - Procurement
-    properties:
-      - url: https://www.staplesadvantage.com/learn/eprocurement-integrations
-        type: Documentation
-      - url: https://www.staplesadvantage.com/
-        type: Portal
-      - url: >-
-          https://raw.githubusercontent.com/api-evangelist/staples/refs/heads/main/openapi/staples-advantage-eprocurement-api-openapi.yml
-        type: OpenAPI
-      - url: https://raw.githubusercontent.com/api-evangelist/staples/refs/heads/main/rules/staples-rules.yml
-        type: SpectralRules
-    description: >-
-      The Staples Advantage eProcurement API enables enterprise procurement integration via PunchOut catalogs
-      (cXML/OCI), EDI, and REST-based order management. Partners integrate with over 170 purchasing platforms including
-      Ariba, Coupa, Jaggaer, Oracle, and NetSuite to streamline office supply procurement.
-  - aid: staples:staples-product-catalog-api
-    name: Staples Product Catalog API
-    tags:
-      - Catalog
-      - Products
-      - Retail
-      - Commerce
-      - Search
-    properties:
-      - url: https://www.staples.com/
-        type: Website
-    description: >-
-      The Staples Product Catalog API provides programmatic access to Staples' office supply catalog including product
-      search, pricing, availability, and category browsing for integration with procurement and ordering systems.
+- aid: staples:staples-product-catalog-api
+  name: Staples Product Catalog API
+  tags:
+  - Catalog
+  - Products
+  - Retail
+  - Commerce
+  - Search
+  properties:
+  - url: https://www.staples.com/
+    type: Website
+  description: >-
+    The Staples Product Catalog API provides programmatic access to Staples' office supply catalog including
+    product search, pricing, availability, and category browsing for integration with procurement and
+    ordering systems.
+- aid: staples:staples-account-api
+  name: Staples Account API
+  description: Account and contract management operations
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/staples-account-api-openapi.yml
+  - type: Documentation
+    url: https://www.staplesadvantage.com/learn/eprocurement-integrations
+  - type: Portal
+    url: https://www.staplesadvantage.com/
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/staples/refs/heads/main/rules/staples-rules.yml
+- aid: staples:staples-catalog-api
+  name: Staples Catalog API
+  description: Product catalog search and browse operations
+  tags:
+  - Catalog
+  properties:
+  - type: OpenAPI
+    url: openapi/staples-catalog-api-openapi.yml
+  - type: Documentation
+    url: https://www.staplesadvantage.com/learn/eprocurement-integrations
+  - type: Portal
+    url: https://www.staplesadvantage.com/
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/staples/refs/heads/main/rules/staples-rules.yml
+- aid: staples:staples-delivery-api
+  name: Staples Delivery API
+  description: Delivery tracking and scheduling operations
+  tags:
+  - Delivery
+  properties:
+  - type: OpenAPI
+    url: openapi/staples-delivery-api-openapi.yml
+  - type: Documentation
+    url: https://www.staplesadvantage.com/learn/eprocurement-integrations
+  - type: Portal
+    url: https://www.staplesadvantage.com/
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/staples/refs/heads/main/rules/staples-rules.yml
+- aid: staples:staples-invoices-api
+  name: Staples Invoices API
+  description: Invoice and billing operations
+  tags:
+  - Invoices
+  properties:
+  - type: OpenAPI
+    url: openapi/staples-invoices-api-openapi.yml
+  - type: Documentation
+    url: https://www.staplesadvantage.com/learn/eprocurement-integrations
+  - type: Portal
+    url: https://www.staplesadvantage.com/
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/staples/refs/heads/main/rules/staples-rules.yml
+- aid: staples:staples-orders-api
+  name: Staples Orders API
+  description: Order management operations
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/staples-orders-api-openapi.yml
+  - type: Documentation
+    url: https://www.staplesadvantage.com/learn/eprocurement-integrations
+  - type: Portal
+    url: https://www.staplesadvantage.com/
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/staples/refs/heads/main/rules/staples-rules.yml
 common:
   - type: AgenticAccess
     url: agentic-access/staples-agentic-access.yml
