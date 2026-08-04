@@ -1,0 +1,22 @@
+{
+  "provider": "staples",
+  "sources": [
+    "staples-account-api-openapi.yml",
+    "staples-catalog-api-openapi.yml",
+    "staples-delivery-api-openapi.yml",
+    "staples-invoices-api-openapi.yml",
+    "staples-orders-api-openapi.yml"
+  ],
+  "outputs": [
+    "staples-account-api-openapi.yml",
+    "staples-catalog-api-openapi.yml",
+    "staples-delivery-api-openapi.yml",
+    "staples-invoices-api-openapi.yml",
+    "staples-orders-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
