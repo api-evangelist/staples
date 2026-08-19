@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Staples Advantage eProcurement Account API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.staplesadvantage.com/v1/account"
+          },
+          "docs": "Returns the Staples Advantage account details including contract information, approved product lists, and spending limits."
+        },
+        {
+          "info": {
+            "name": "List Cost Centers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.staplesadvantage.com/v1/account/cost-centers"
+          },
+          "docs": "Returns all cost center codes configured for the authenticated account for order allocation and expense tracking."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

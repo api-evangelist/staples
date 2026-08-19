@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Staples Advantage eProcurement Account Catalog API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.staplesadvantage.com/v1/catalog/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query string"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product category"
+              },
+              {
+                "name": "brand",
+                "value": "",
+                "type": "query",
+                "description": "Filter by brand name"
+              },
+              {
+                "name": "inStock",
+                "value": "",
+                "type": "query",
+                "description": "Filter to in-stock items only"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search the Staples Advantage product catalog by keyword, category, or SKU. Returns matching products with pricing, availability, and contract-specific pricing where applicable."
+        },
+        {
+          "info": {
+            "name": "List Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.staplesadvantage.com/v1/catalog/categories"
+          },
+          "docs": "Returns the full Staples Advantage product category hierarchy including office supplies, technology, furniture, cleaning, and breakroom categories."
+        },
+        {
+          "info": {
+            "name": "Get Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.staplesadvantage.com/v1/catalog/products/:sku",
+            "params": [
+              {
+                "name": "sku",
+                "value": "",
+                "type": "path",
+                "description": "The product SKU identifier"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a specific product by SKU, including full description, specifications, pricing, availability, and related products."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
