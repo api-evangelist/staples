@@ -35,6 +35,12 @@ apis:
   name: Staples Product Catalog API
   tags:
   - Catalog
+  - Product
+  - Retail
+  - Commerce
+  - Search
+  tags_raw:
+  - Catalog
   - Products
   - Retail
   - Commerce
@@ -110,6 +116,8 @@ apis:
   name: Staples Orders API
   description: Order management operations
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
