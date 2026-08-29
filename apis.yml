@@ -142,6 +142,9 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/staples/refs/heads/main/rules/staples-rules.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/staples-capability-edges.yml
+    name: Staples Business Capability Map
   - type: AgenticAccess
     url: agentic-access/staples-agentic-access.yml
   - type: DomainSecurity
