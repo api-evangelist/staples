@@ -1,7 +1,9 @@
 ---
 title: Staples Canada ULC Press Releases | Cision
 url: https://www.newswire.ca/news/staples-canada-ulc/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Staples" press release artificial intelligence'
 position: 4
 source: serpapi-google

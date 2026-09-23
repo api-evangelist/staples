@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Staples Advantage eProcurement Account API
   description: The Staples Advantage eProcurement API enables enterprise procurement integration for business customers. Partners can search the Staples product catalog, manage orders, track deliveries, and access account information. Supports integration with over 170 eProcurement platforms including Ariba, Coupa, Jaggaer, and Oracle for streamlined office supply procurement.
@@ -59,24 +59,6 @@ paths:
           description: Too Many Requests
 components:
   schemas:
-    CostCenter:
-      type: object
-      properties:
-        code:
-          type: string
-        name:
-          type: string
-        budget:
-          type: number
-          format: float
-        spent:
-          type: number
-          format: float
-        available:
-          type: number
-          format: float
-        active:
-          type: boolean
     Account:
       type: object
       properties:
@@ -106,6 +88,24 @@ components:
               type: string
             phone:
               type: string
+    CostCenter:
+      type: object
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+        budget:
+          type: number
+          format: float
+        spent:
+          type: number
+          format: float
+        available:
+          type: number
+          format: float
+        active:
+          type: boolean
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,7 +1,9 @@
 ---
 title: Staples Launches “Business is Human” Brand Campaign
 url: https://www.businesswire.com/news/home/20230518005153/en/Staples-Launches-Business-is-Human-Brand-Campaign
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Staples" press release artificial intelligence'
 position: 1
 source: serpapi-google

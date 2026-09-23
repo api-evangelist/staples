@@ -1,7 +1,9 @@
 ---
 title: Will Staples 'Business is Human' Campaign Connect With ...
 url: https://retailwire.com/discussion/will-staples-business-is-human-campaign-connect-with-customers/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Staples" press release artificial intelligence'
 position: 2
 source: serpapi-google

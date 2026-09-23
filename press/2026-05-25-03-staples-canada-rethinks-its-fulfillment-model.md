@@ -1,7 +1,9 @@
 ---
 title: Staples Canada rethinks its fulfillment model
 url: https://www.scmr.com/article/staples-canada-rethinks-its-fulfillment-model
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Staples" press release artificial intelligence'
 position: 3
 source: serpapi-google
