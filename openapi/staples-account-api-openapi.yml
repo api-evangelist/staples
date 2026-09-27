@@ -59,6 +59,24 @@ paths:
           description: Too Many Requests
 components:
   schemas:
+    CostCenter:
+      type: object
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+        budget:
+          type: number
+          format: float
+        spent:
+          type: number
+          format: float
+        available:
+          type: number
+          format: float
+        active:
+          type: boolean
     Account:
       type: object
       properties:
@@ -88,24 +106,6 @@ components:
               type: string
             phone:
               type: string
-    CostCenter:
-      type: object
-      properties:
-        code:
-          type: string
-        name:
-          type: string
-        budget:
-          type: number
-          format: float
-        spent:
-          type: number
-          format: float
-        available:
-          type: number
-          format: float
-        active:
-          type: boolean
   securitySchemes:
     bearerAuth:
       type: http

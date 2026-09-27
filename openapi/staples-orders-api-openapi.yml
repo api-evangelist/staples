@@ -134,35 +134,6 @@ paths:
           description: Too Many Requests
 components:
   schemas:
-    Order:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-          enum:
-          - pending
-          - confirmed
-          - shipped
-          - delivered
-          - cancelled
-        purchaseOrderNumber:
-          type: string
-        itemCount:
-          type: integer
-        subtotal:
-          type: number
-          format: float
-        total:
-          type: number
-          format: float
-        orderedAt:
-          type: string
-          format: date-time
-        estimatedDelivery:
-          type: string
-          format: date
     Address:
       type: object
       properties:
@@ -182,6 +153,34 @@ components:
           type: string
           default: US
         phone:
+          type: string
+    CreateOrderRequest:
+      type: object
+      required:
+      - items
+      - deliveryAddress
+      properties:
+        purchaseOrderNumber:
+          type: string
+        items:
+          type: array
+          items:
+            type: object
+            required:
+            - sku
+            - quantity
+            properties:
+              sku:
+                type: string
+              quantity:
+                type: integer
+              costCenter:
+                type: string
+        deliveryAddress:
+          $ref: '#/components/schemas/Address'
+        deliveryInstructions:
+          type: string
+        accountId:
           type: string
     OrderDetail:
       allOf:
@@ -211,34 +210,35 @@ components:
             type: array
             items:
               type: string
-    CreateOrderRequest:
+    Order:
       type: object
-      required:
-      - items
-      - deliveryAddress
       properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - confirmed
+          - shipped
+          - delivered
+          - cancelled
         purchaseOrderNumber:
           type: string
-        items:
-          type: array
-          items:
-            type: object
-            required:
-            - sku
-            - quantity
-            properties:
-              sku:
-                type: string
-              quantity:
-                type: integer
-              costCenter:
-                type: string
-        deliveryAddress:
-          $ref: '#/components/schemas/Address'
-        deliveryInstructions:
+        itemCount:
+          type: integer
+        subtotal:
+          type: number
+          format: float
+        total:
+          type: number
+          format: float
+        orderedAt:
           type: string
-        accountId:
+          format: date-time
+        estimatedDelivery:
           type: string
+          format: date
   securitySchemes:
     bearerAuth:
       type: http

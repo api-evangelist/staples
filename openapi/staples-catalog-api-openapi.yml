@@ -157,28 +157,6 @@ components:
             type: array
             items:
               type: string
-    Category:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        parentId:
-          type: string
-        level:
-          type: integer
-        productCount:
-          type: integer
-        subcategories:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
     Product:
       type: object
       properties:
@@ -201,6 +179,28 @@ components:
           type: boolean
         imageUrl:
           type: string
+    Category:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        parentId:
+          type: string
+        level:
+          type: integer
+        productCount:
+          type: integer
+        subcategories:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
   securitySchemes:
     bearerAuth:
       type: http
