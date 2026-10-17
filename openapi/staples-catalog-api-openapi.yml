@@ -134,6 +134,28 @@ paths:
           description: Too Many Requests
 components:
   schemas:
+    Product:
+      type: object
+      properties:
+        sku:
+          type: string
+        name:
+          type: string
+        brand:
+          type: string
+        category:
+          type: string
+        price:
+          type: number
+          format: float
+        contractPrice:
+          type: number
+          format: float
+          description: Contract-specific price if applicable
+        inStock:
+          type: boolean
+        imageUrl:
+          type: string
     ProductDetail:
       allOf:
       - $ref: '#/components/schemas/Product'
@@ -157,28 +179,6 @@ components:
             type: array
             items:
               type: string
-    Product:
-      type: object
-      properties:
-        sku:
-          type: string
-        name:
-          type: string
-        brand:
-          type: string
-        category:
-          type: string
-        price:
-          type: number
-          format: float
-        contractPrice:
-          type: number
-          format: float
-          description: Contract-specific price if applicable
-        inStock:
-          type: boolean
-        imageUrl:
-          type: string
     Category:
       type: object
       properties:

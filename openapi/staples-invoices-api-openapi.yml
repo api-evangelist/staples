@@ -99,6 +99,30 @@ paths:
           description: Too Many Requests
 components:
   schemas:
+    Invoice:
+      type: object
+      properties:
+        id:
+          type: string
+        invoiceNumber:
+          type: string
+        status:
+          type: string
+          enum:
+          - open
+          - paid
+          - overdue
+        amount:
+          type: number
+          format: float
+        dueDate:
+          type: string
+          format: date
+        issuedAt:
+          type: string
+          format: date
+        orderId:
+          type: string
     InvoiceDetail:
       allOf:
       - $ref: '#/components/schemas/Invoice'
@@ -128,30 +152,6 @@ components:
           paymentDate:
             type: string
             format: date
-    Invoice:
-      type: object
-      properties:
-        id:
-          type: string
-        invoiceNumber:
-          type: string
-        status:
-          type: string
-          enum:
-          - open
-          - paid
-          - overdue
-        amount:
-          type: number
-          format: float
-        dueDate:
-          type: string
-          format: date
-        issuedAt:
-          type: string
-          format: date
-        orderId:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

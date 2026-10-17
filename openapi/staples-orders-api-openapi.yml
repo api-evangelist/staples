@@ -134,6 +134,35 @@ paths:
           description: Too Many Requests
 components:
   schemas:
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - confirmed
+          - shipped
+          - delivered
+          - cancelled
+        purchaseOrderNumber:
+          type: string
+        itemCount:
+          type: integer
+        subtotal:
+          type: number
+          format: float
+        total:
+          type: number
+          format: float
+        orderedAt:
+          type: string
+          format: date-time
+        estimatedDelivery:
+          type: string
+          format: date
     Address:
       type: object
       properties:
@@ -210,35 +239,6 @@ components:
             type: array
             items:
               type: string
-    Order:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-          enum:
-          - pending
-          - confirmed
-          - shipped
-          - delivered
-          - cancelled
-        purchaseOrderNumber:
-          type: string
-        itemCount:
-          type: integer
-        subtotal:
-          type: number
-          format: float
-        total:
-          type: number
-          format: float
-        orderedAt:
-          type: string
-          format: date-time
-        estimatedDelivery:
-          type: string
-          format: date
   securitySchemes:
     bearerAuth:
       type: http
