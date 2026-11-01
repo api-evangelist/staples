@@ -1,4 +1,4 @@
-# Staples (staples)
+# Staples
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,75 +66,166 @@
 
 Staples is an American multinational office supply retail company that offers B2B procurement integration through Staples Business Advantage. The platform supports over 170 eProcurement system integrations including PunchOut catalogs, EDI, and REST-based procurement APIs for enterprise customers.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/staples/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/staples/refs/heads/main/apis.yml)
+**Areas:** Office Supplies · Retail · Procurement · B2B · eProcurement · Fortune 500
 
-## Scope
+## Staples on APIs.io
 
-- **Type:** Index
+Everything profiled for Staples is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/staples/](https://apis.io/providers/staples/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (6)
 
-- Office Supplies
-- Retail
-- Procurement
-- B2B
-- eProcurement
+- [Staples Product Catalog API](https://apis.io/apis/staples/staples-product-catalog-api/) — The Staples Product Catalog API provides programmatic access to Staples' office supply catalog including product search, pricing, availability, and category…
+- [Staples Account API](https://apis.io/apis/staples/staples-account-api/) — Account and contract management operations
+- [Staples Catalog API](https://apis.io/apis/staples/staples-catalog-api/) — Product catalog search and browse operations
+- [Staples Delivery API](https://apis.io/apis/staples/staples-delivery-api/) — Delivery tracking and scheduling operations
+- [Staples Invoices API](https://apis.io/apis/staples/staples-invoices-api/) — Invoice and billing operations
+- [Staples Orders API](https://apis.io/apis/staples/staples-orders-api/) — Order management operations
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Staples Advantage eProcurement API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Staples Advantage eProcurement API enables enterprise procurement integration via PunchOut catalogs (cXML/OCI), EDI, and REST-based order management. Partners integrate with over 170 purchasing platforms including Ariba, Coupa, Jaggaer, Oracle, and NetSuite to streamline office supply procurement.
+- [Staples Agentic Access](https://apis.io/agentic-access/staples/staples-agentic-access/)
 
-#### Tags
+#### JSON Schema (2)
 
-- eProcurement
-- PunchOut
-- B2B
-- Office Supplies
-- Procurement
+The data models the API reads and writes.
 
-#### Properties
+- [Staples Advantage Order](https://apis.io/schemas/staples/staples-order/)
+- [Staples Product](https://apis.io/schemas/staples/staples-product/)
 
-- [Documentation](https://www.staplesadvantage.com/learn/eprocurement-integrations)
-- [Portal](https://www.staplesadvantage.com/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/staples/refs/heads/main/openapi/staples-advantage-eprocurement-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/staples/refs/heads/main/rules/staples-rules.yml)
-- [Postman Collection](collections/staples-advantage-eprocurement-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/staples-advantage-eprocurement-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### JSON Structure (1)
 
-### Staples Product Catalog API
+Data models expressed in JSON Structure.
 
-The Staples Product Catalog API provides programmatic access to Staples' office supply catalog including product search, pricing, availability, and category browsing for integration with procurement and ordering systems.
+- [Staples Product Structure](https://apis.io/json-structure/staples/staples-product-structure/)
 
-#### Tags
+#### JSON-LD (1)
 
-- Catalog
-- Products
-- Retail
-- Commerce
-- Search
+Linked-data contexts for the provider's vocabulary.
 
-#### Properties
+- [Staples Context](https://apis.io/jsonld/staples/staples-context/)
 
-- [Website](https://www.staples.com/)
-- [Postman Collection](collections/staples-advantage-eprocurement-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/staples-advantage-eprocurement-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Vocabulary (1)
 
-## Common Properties
+The provider's domain terms, defined.
 
-- [GitHub Organization](https://github.com/Staples-Inc)
+- [Staples Vocabulary](https://apis.io/vocabularies/staples/staples-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Staples Create Order Example](https://apis.io/examples/staples/staples-create-order-example/)
+- [Staples Search Products Example](https://apis.io/examples/staples/staples-search-products-example/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Staples Advantage eProcurement Account API](https://apis.io/collections/staples/open-staples-account-api/)
+- [Staples Advantage eProcurement API](https://apis.io/collections/staples/open-staples-advantage-eprocurement-api/)
+- [Staples Advantage eProcurement Account Catalog API](https://apis.io/collections/staples/open-staples-catalog-api/)
+- [Staples Advantage eProcurement Account Delivery API](https://apis.io/collections/staples/open-staples-delivery-api/)
+- [Staples Advantage eProcurement Account Invoices API](https://apis.io/collections/staples/open-staples-invoices-api/)
+- [Staples Advantage eProcurement Account Orders API](https://apis.io/collections/staples/open-staples-orders-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Staples — jsonschema rules](https://apis.io/rules/staples/staples-jsonschema-spectral-rules/)
+- [Staples API Rules](https://apis.io/rules/staples/staples-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Staples Authentication](https://apis.io/security/staples/staples-authentication/)
+- [Staples Domain Security](https://apis.io/security/staples/staples-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Staples Plans Pricing](https://apis.io/plans/staples/staples-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Staples Rate Limits](https://apis.io/rate-limits/staples/staples-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Staples Finops](https://apis.io/finops/staples/staples-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.staples.com)
-- [Portal](https://www.staplesadvantage.com/)
 - [Documentation](https://www.staplesadvantage.com/learn/eprocurement-integrations)
 - [Blog](https://news.staples.com/)
-- [Privacy Policy](https://www.staples.com/sbd/cre/programs/privacy_policy/index.html)
-- [Terms of Service](https://www.staples.com/sbd/cre/marketing/terms-and-conditions/)
-- [X (Twitter)](https://x.com/Staples)
-- [LinkedIn](https://www.linkedin.com/company/staples)
-- [Facebook](https://www.facebook.com/Staples)
+- [Terms of service](https://www.staples.com/sbd/cre/marketing/terms-and-conditions/)
+- [Privacy policy](https://www.staples.com/sbd/cre/programs/privacy_policy/index.html)
+- [GitHub](https://github.com/Staples-Inc)
+
+## API Evangelist rating
+
+**Kin Score 31.9** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 42.9 |
+| Contract quality | 56.9 |
+| Contract governance | 13.6 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 26.3 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/staples/](https://apis.io/providers/staples/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Staples: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/staples/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
